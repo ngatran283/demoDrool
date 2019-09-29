@@ -1,0 +1,30 @@
+//created on: Sep 29, 2019
+package com.droolscours
+
+import com.droolscours.Account
+import com.droolscours.AccountingPeriod
+import com.droolscours.CashFlow
+import com.util.OutputDisplay
+
+global OutputDisplay showResults;
+
+rule "Start process"
+	when
+	then
+	kcontext.getKieRuntime().startProcess("RF1");
+end
+
+rule "Account group1"
+    ruleflow-group "Group1"
+    when
+        Account(  )
+    then 
+        showResults.showText("Account in Group1");
+end
+rule "Account group2"
+    ruleflow-group "Group2"
+    when
+        Account(  )
+    then 
+        showResults.showText("Account in Group2");
+end

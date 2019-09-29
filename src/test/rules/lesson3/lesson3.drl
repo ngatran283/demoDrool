@@ -1,0 +1,30 @@
+//created on: Sep 29, 2019
+package com.droolscours
+
+//list any import classes here.
+import com.droolscours.Account
+import com.droolscours.AccountingPeriod
+import com.droolscours.CashFlow
+import com.util.OutputDisplay
+
+
+
+//declare any global variables here
+global OutputDisplay showResults;
+
+
+
+rule "The cashFlow can be a  credit or a debit"
+    when
+        $cash :CashFlow(type in ( CashFlow.DEBIT,CashFlow.CREDIT) );
+
+    then
+        showResults.showText("The cashFlow is a credit or a debit");
+end
+
+rule "Accessor"
+    when
+        PrivateAccount( owner.name =="Héron" )
+    then
+        showResults.showText("Account is owned by Héron");
+end

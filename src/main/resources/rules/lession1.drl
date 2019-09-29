@@ -1,0 +1,41 @@
+//created on: Sep 29, 2019
+package com.droolscours
+
+//list any import classes here.
+import com.droolscours.Account
+import com.droolscours.AccountingPeriod
+import com.droolscours.CashFlow
+import com.util.OutputDisplay
+
+
+
+//declare any global variables here
+global OutputDisplay showResults;
+
+
+
+rule "Account exist"
+
+    when
+        Account();
+    then
+ 		showResults.showText("The account exists");
+end
+
+rule "Revisit accounting period"
+
+    when
+        CashFlow();
+    then
+ 		showResults.showText("CashFlow exists, inserting an account period");
+ 		AccountingPeriod accountPeriod = new AccountingPeriod();
+ 		insert(accountPeriod);
+end
+
+rule "Rule account period are inserting"
+
+    when
+        AccountingPeriod(  );
+    then
+ 		showResults.showText("Accounting period exists");
+end
